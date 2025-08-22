@@ -1,0 +1,31 @@
+.cardBase {
+  cursor: pointer;
+  position: relative;
+  background: #fff;
+  padding-left: 24px;
+  padding-right: 24px;
+  &:hover {
+    background: #fafafa;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 24px;
+    right: 24px;
+    height: 1px;
+    background-color: #e8e8e8;
+  }
+  // &:last-child {
+  //   &:after {
+  //     content: '';
+  //     display: none;
+  //   }
+  // }
+}
+
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

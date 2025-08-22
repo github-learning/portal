@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="6px" height="11px" viewBox="0 0 6 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>斜杠</title>
+    <defs>
+        <linearGradient x1="68%" y1="80.8726341%" x2="32%" y2="-3.44891057%" id="linearGradient-1">
+            <stop stop-color="#1664FF" offset="0%"></stop>
+            <stop stop-color="#168BFF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="I-控制台" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="控制台首页1" transform="translate(-202.000000, -2974.000000)" fill="url(#linearGradient-1)">
+            <g id="编组-40" transform="translate(100.000000, 2914.000000)">
+                <g id="企业信息" transform="translate(53.000000, 0.000000)">
+                    <g id="编组-38" transform="translate(49.000000, 56.000000)">
+                        <g id="斜杠-3" transform="translate(0.000000, 3.789835)">
+                            <g id="斜杠" transform="translate(0.000000, 1.000000)">
+                                <polygon points="0 10 3.8380573 10 6 0 2.09429621 0"></polygon>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

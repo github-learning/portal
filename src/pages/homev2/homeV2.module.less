@@ -1,0 +1,31 @@
+.homeWrap {
+  min-width: 1440px;
+  min-height: 1300px;
+  width: 100%;
+  background: #f0f2f5;
+  padding: 24px;
+  display: flex;
+}
+
+.homeWrapLeft {
+  margin-right: 14px;
+
+  width: calc(100% - 350px);
+}
+.homeWrapRight {
+  //   flex-grow: 1;
+  width: 336px;
+}
+
+.noticeWrap {
+  display: flex;
+  justify-content: space-between;
+  & > div {
+    width: calc(50% - 8px);
+    overflow: hidden;
+    flex-basis: calc(50% - 8px);
+  }
+  & > div + div {
+    margin-left: 16px;
+  }
+}
