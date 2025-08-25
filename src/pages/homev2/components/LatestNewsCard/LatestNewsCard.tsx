@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import { CommonCardHeader } from '../CommonCardHeader/CommonCardHeader';
-<<<<<<< HEAD
-import { Button, Spin } from 'antd';
-=======
 import { Spin } from 'antd';
->>>>>>> d1f1d1861b73d4cff7c592fa46ceae5e0f13e81e
 import styles from './latestNewsCard.module.less';
 import { useRequest } from 'ahooks';
 import { Empty, rcRequest } from '@core/rc-components';

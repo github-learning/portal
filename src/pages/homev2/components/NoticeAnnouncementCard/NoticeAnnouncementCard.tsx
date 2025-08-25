@@ -5,8 +5,42 @@ import { GenericCard, IGenericCardItem } from '../GenericCard/GenericCard';
 import type { Moment } from 'moment';
 import styles from './noticeAnnouncementCard.module.less';
 import { CommonCardHeader } from '../CommonCardHeader/CommonCardHeader';
+import { useRequest } from 'ahooks';
+import { Empty, rcRequest } from '@core/rc-components';
+import emptyImg from '@/asset/img/empty.png';
 
 const { Option } = Select;
+
+// Mock数据 - 当接口没有数据时使用
+const mockNoticeData = [
+  {
+    id: 1,
+    title: '系统维护通知',
+    content: '系统将于今晚进行维护升级，预计维护时间2小时',
+    time: '2023-03-10',
+    status: 'urgent' as const,
+    businessCode: 'SYS001',
+    processName: '系统维护',
+  },
+  {
+    id: 2,
+    title: '新功能上线公告',
+    content: '新增用户管理功能，提升用户体验',
+    time: '2023-03-15',
+    status: 'normal' as const,
+    businessCode: 'FEAT001',
+    processName: '功能发布',
+  },
+  {
+    id: 3,
+    title: '安全更新提醒',
+    content: '请及时更新密码，确保账户安全',
+    time: '2023-03-20',
+    status: 'warning' as const,
+    businessCode: 'SEC001',
+    processName: '安全更新',
+  },
+];
 
 // 扩展通知公告项的类型
 interface INoticeItem extends Omit<IGenericCardItem, 'status'> {
@@ -15,51 +49,67 @@ interface INoticeItem extends Omit<IGenericCardItem, 'status'> {
 }
 
 export const NoticeAnnouncementCard: React.FC = () => {
-  const [currentMonth, setCurrentMonth] = useState<Moment>(
-    require('moment')('2023-03-01'),
+  // 使用当前时间作为默认值
+  const [currentMonth, setCurrentMonth] = useState<Moment>(require('moment')());
+  // 当前选中的日期
+  const [selectedDate, setSelectedDate] = useState<Moment | null>(null);
+
+  // 获取通知公告数据
+  const { data, loading } = useRequest(
+    () =>
+      rcRequest(`/api/cms/v1/cms/content/notice/page`, {
+        data: { pageNum: 1, pageSize: 3 },
+        method: 'post',
+      }),
+    {},
   );
 
-  // 模拟数据 - 根据图片中的内容
-  const noticeItems: INoticeItem[] = [
-    {
-      id: 1,
-      title: '3月安全例行巡检任务',
-      description: '张提交: 2019-08-24 10:01:39',
-      time: '26',
-      status: 'inProgress',
-      businessCode: 'SAFE001',
-      processName: '安全巡检',
-      dayOfWeek: '周三',
-    },
-    {
-      id: 2,
-      title: '3月安全例行巡检任务',
-      description: '张提交: 2019-08-24 10:01:39',
-      time: '26',
-      status: 'completed',
-      businessCode: 'SAFE002',
-      processName: '安全巡检',
-      dayOfWeek: '周三',
-    },
-    {
-      id: 3,
-      title: '3月安全例行巡检任务',
-      description: '张提交: 2019-08-24 10:01:39',
-      time: '26',
-      status: 'completed',
-      businessCode: 'SAFE003',
-      processName: '安全巡检',
-      dayOfWeek: '周三',
-    },
-  ];
+  // 从接口数据转换为组件需要的格式，如果没有数据则使用空数组
+  const noticeItems: INoticeItem[] =
+    (data?.rows || []).length > 0
+      ? (data?.rows || []).map((row: any, index: number) => {
+          const createTime = row.createTime
+            ? require('moment')(row.createTime)
+            : null;
+          const dayOfWeek = createTime ? createTime.format('dddd') : '--';
 
-  // 日历事件数据
-  const calendarEvents = [
-    { date: '2023-03-10', hasEvent: true },
-    { date: '2023-03-11', hasEvent: true },
-    { date: '2023-03-18', hasEvent: true },
-    { date: '2023-03-26', hasEvent: true },
-  ];
+          return {
+            id: row.id || index + 1,
+            title: row.title || row.content || '通知公告',
+            description: createTime
+              ? `创建时间: ${createTime.format('YYYY-MM-DD HH:mm:ss')}`
+              : '暂无描述',
+            time: createTime ? createTime.format('DD') : '--',
+            status: row.status || 'normal',
+            businessCode: row.businessCode || '',
+            processName: row.processName || '',
+            dayOfWeek: dayOfWeek,
+            ...row, // 保留原始数据
+          };
+        })
+      : [];
+
+  // 日历事件数据 - 根据实际通知数据动态生成
+  const calendarEvents = noticeItems.map((item) => {
+    // 确保时间格式正确，如果time是DD格式，需要结合当前月份
+    let dateStr;
+    if (item.time && item.time.length <= 2) {
+      // 如果time只是日期数字，需要结合当前月份和年份
+      const currentYear = currentMonth.year();
+      const currentMonthNum = currentMonth.month() + 1;
+      dateStr = `${currentYear}-${currentMonthNum
+        .toString()
+        .padStart(2, '0')}-${item.time.padStart(2, '0')}`;
+    } else {
+      // 如果time已经是完整日期格式
+      dateStr = require('moment')(item.time).format('YYYY-MM-DD');
+    }
+
+    return {
+      date: dateStr,
+      hasEvent: true,
+    };
+  });
 
   const dateCellRender = (value: Moment) => {
     const dateStr = value.format('YYYY-MM-DD');
@@ -140,7 +190,7 @@ export const NoticeAnnouncementCard: React.FC = () => {
   );
 
   const handleMoreClick = () => {
-    console.log('查看更多通知公告');
+    window.open(`/uims/notice?type=2`);
   };
 
   const handleItemClick = (item: INoticeItem) => {
@@ -149,6 +199,18 @@ export const NoticeAnnouncementCard: React.FC = () => {
 
   const onPanelChange = (value: Moment) => {
     setCurrentMonth(value);
+    // 切换月份时清除选中的日期，避免显示错误的高亮
+    setSelectedDate(null);
+  };
+
+  const onDateSelect = (value: Moment) => {
+    console.log('选择的日期:', value.format('YYYY-MM-DD'));
+    setSelectedDate(value);
+
+    // 可以在这里添加更多逻辑，比如：
+    // - 跳转到该日期的通知详情
+    // - 显示该日期的通知列表
+    // - 过滤显示该日期的通知
   };
 
   return (
@@ -165,8 +227,9 @@ export const NoticeAnnouncementCard: React.FC = () => {
       {/* 日历组件 */}
       <div className={styles.calendarContainer}>
         <Calendar
-          value={currentMonth}
+          value={selectedDate || currentMonth}
           onPanelChange={onPanelChange}
+          onSelect={onDateSelect}
           headerRender={headerRender}
           dateCellRender={dateCellRender}
           fullscreen={false}
@@ -176,11 +239,21 @@ export const NoticeAnnouncementCard: React.FC = () => {
 
       {/* 通知列表 */}
       <div className={styles.noticeList}>
-        {noticeItems.map((item) => (
-          <div key={item.id} onClick={() => handleItemClick(item)}>
-            {renderNoticeItem(item)}
+        {loading ? (
+          <div className={styles.loadingContainer}>
+            <div className={styles.loadingText}>加载中...</div>
           </div>
-        ))}
+        ) : noticeItems.length > 0 ? (
+          noticeItems.map((item) => (
+            <div key={item.id} onClick={() => handleItemClick(item)}>
+              {renderNoticeItem(item)}
+            </div>
+          ))
+        ) : (
+          <div className={styles.emptyContainer}>
+            <Empty imgSrc={emptyImg} title="" imgHeight={180} imgWidth={214} />
+          </div>
+        )}
       </div>
     </div>
   );

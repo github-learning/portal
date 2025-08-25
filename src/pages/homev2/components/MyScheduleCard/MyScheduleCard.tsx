@@ -90,6 +90,7 @@ export const MyScheduleCard: React.FC = () => {
   const handleItemClick = (item: IScheduleItem) => {
     console.log('点击日程:', item);
   };
+  // TODO 接口提供数据
 
   return (
     <div className={styles.container}>

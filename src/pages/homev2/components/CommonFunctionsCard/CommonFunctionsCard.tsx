@@ -1,22 +1,11 @@
 import React, { memo, useEffect, useState } from 'react';
 import styles from './commonFunctionsCard.module.less';
 import { CommonCardHeader } from '../CommonCardHeader/CommonCardHeader';
-<<<<<<< HEAD
-import { MoreFuncBtn } from './MoreFuncBtn';
-import { useRequest } from 'ahooks';
-import { apiConfig } from 'remote/shared';
-import { rcRequest, Empty } from '@core/rc-components';
-import { Button } from 'antd';
-import { FunctionsMenuDrawer } from './FunctionsMenuDrawer';
-import { useCommonFunctionsData } from './useCommonFunctionsData';
-import { DrawerMenuItem } from './DrawerMenuItem';
-=======
 import { DrawerMenuItem } from './DrawerMenuItem';
 import { useCommonFunctionsData } from './useCommonFunctionsData';
 import { FunctionsMenuDrawer } from './FunctionsMenuDrawer';
 import { Empty, SpinnersDot } from '@core/rc-components';
 import { Button } from 'antd';
->>>>>>> d1f1d1861b73d4cff7c592fa46ceae5e0f13e81e
 
 const LoadingC = () => {
   return;

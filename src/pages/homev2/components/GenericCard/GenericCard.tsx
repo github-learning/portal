@@ -1,7 +1,9 @@
 import React from 'react';
 import styles from './genericCard.module.less';
 import { CommonCardHeader } from '../CommonCardHeader/CommonCardHeader';
-import { Empty, Spin } from 'antd';
+import { Spin } from 'antd';
+import { Empty, rcRequest } from '@core/rc-components';
+import emptyImg from '@/asset/img/empty.png';
 
 export interface IGenericCardItem {
   id: string | number;
@@ -60,7 +62,12 @@ export const GenericCard: React.FC<IGenericCardProps> = ({
         <Spin spinning={loading}>
           {isEmpty && (
             <div className={styles.emptyWrap}>
-              <Empty description={emptyText} />
+              <Empty
+                imgSrc={emptyImg}
+                title=""
+                imgHeight={180}
+                imgWidth={214}
+              />
             </div>
           )}
 

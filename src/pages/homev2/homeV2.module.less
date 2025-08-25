@@ -6,6 +6,7 @@
   padding: 24px;
   display: flex;
   gap: 14px; // 使用gap替代margin，更现代的布局方式
+  align-items: flex-start; // 改为flex-start，让左侧保持自然高度
 }
 
 .homeWrapLeft {
@@ -20,7 +21,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  align-self: stretch; // 确保右侧区域拉伸到与左侧同高
+  align-self: flex-start; // 改为flex-start，让右侧适配左侧高度
 }
 
 .cardsGrid {
