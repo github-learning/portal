@@ -1,0 +1,154 @@
+.taskCalendar {
+  min-height: 266px;
+}
+.header {
+  height: 56px;
+  border-bottom: 1px solid #ededed;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #262626;
+}
+
+.spanBtn {
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--lj-primary-color);
+}
+
+.divider {
+  width: 304px;
+  height: 0px;
+  opacity: 1;
+  border: 1px solid #ededed;
+  margin: 0 auto;
+}
+
+.empty {
+  height: 300px !important;
+}
+
+.taskList {
+  width: 352px;
+  height: calc(100% - 56px - 321px - 2px);
+  overflow-y: auto;
+  padding: 16px 24px;
+}
+
+.taskItem {
+  height: 110px;
+  padding: 0 12px 0 16px;
+  margin-bottom: 16px;
+}
+
+.status2 {
+  background: #f3f8ff;
+  border-left: 4px solid var(--lj-primary-color);
+}
+
+.status1 {
+  background: #fbfbfb;
+  border-left: 4px solid #d9d9d9;
+}
+
+.status5 {
+  background: #f2fbf8;
+  border-left: 4px solid #00b578;
+}
+
+.line1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 38px;
+  padding-top: 16px;
+}
+
+.time {
+  font-size: 14px;
+  font-weight: 500;
+  color: #595959;
+}
+
+.line2 {
+  margin-top: 8px;
+}
+
+.line3 {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.people {
+  max-width: calc(100% - 60px - 24px);
+  height: 20px;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.45);
+  line-height: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.type {
+  flex: 1;
+  margin-left: 24px;
+  height: 20px;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.45);
+  line-height: 20px;
+}
+
+.blueCircle {
+  width: 4px;
+  height: 4px;
+  margin: 0px 10px;
+  margin-top: 3px;
+  text-align: center;
+  background: var(--lj-primary-color);
+  border-radius: 50%;
+}
+
+.greyCircle {
+  width: 4px;
+  height: 4px;
+  margin: 0px 10px;
+  margin-top: 3px;
+  text-align: center;
+  background: #d9d9d9;
+  border-radius: 50%;
+}
+
+.calendarOperate {
+  display: flex;
+  align-items: center;
+  padding: 9px 20px;
+  &__left {
+    width: 80px;
+  }
+  &__right {
+    width: 80px;
+    text-align: right;
+  }
+  &__center {
+    flex: 1;
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: 500;
+    font-size: 14px;
+    text-align: center;
+  }
+}
+
+.ml32 {
+  margin-left: 32px;
+}

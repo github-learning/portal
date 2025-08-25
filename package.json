@@ -1,0 +1,87 @@
+{
+  "name": "portal",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@ant-design/icons": "^5.0.1",
+    "@core/rc-components": "^22.1.8",
+    "@core/service-api": "^22.1.8",
+    "@dnd-kit/core": "^6.1.0",
+    "@dnd-kit/sortable": "^8.0.0",
+    "ahooks": "^3.4.1",
+    "antd": "^4.24.0",
+    "dayjs": "^1.11.3",
+    "echarts": "^5.4.1",
+    "echarts-for-react": "^3.0.2",
+    "immer": "^10.0.3",
+    "js-base64": "^3.7.5",
+    "lodash-es": "^4.17.21",
+    "moment": "^2.29.4",
+    "nanoid": "4",
+    "normalize.css": "^8.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.1",
+    "use-immer": "^0.9.0",
+    "web-vitals": "^3.5.0"
+  },
+  "scripts": {
+    "start:dev": "cross-env NODE_ENV=development REACT_APP_ENV=dev craco  start",
+    "start:test": "cross-env NODE_ENV=development REACT_APP_ENV=test craco  start",
+    "build": "cross-env NODE_ENV=production  craco --max-old-space-size=4096 build",
+    "mother": "mother m"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ],
+    "rules": {
+      "no-useless-escape": "off",
+      "eqeqeq": "off",
+      "jsx-a11y/anchor-is-valid": "off",
+      "react-hooks/exhaustive-deps": "off",
+      "@typescript-eslint/no-unused-vars": "off",
+      "no-sequences": "off",
+      "import/no-anonymous-default-export": "off",
+      "jsx-a11y/alt-text": "off"
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@core/craco-config": "^22.1.8",
+    "@core/mother": "^0.0.9",
+    "@craco/craco": "^7.0.0",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.2.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/file-saver": "^2.0.5",
+    "@types/jest": "^27.5.1",
+    "@types/node": "^16.11.36",
+    "@types/qs": "^6.9.7",
+    "@types/react": "^18.0.15",
+    "@types/react-copy-to-clipboard": "^5",
+    "@types/react-dom": "^18.0.6",
+    "@types/react-transition-group": "^4.4.4",
+    "@types/styled-components": "^5.1.25",
+    "@types/superagent": "^4.1.14",
+    "@types/webpack-env": "^1.18.0",
+    "antd-dayjs-webpack-plugin": "^1.0.6",
+    "cross-env": "^7.0.3",
+    "prettier": "^2.8.1",
+    "react-scripts": "^5.0.1",
+    "typescript": "^4.8.0"
+  },
+  "packageManager": "yarn@3.2.4"
+}

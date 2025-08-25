@@ -1,0 +1,35 @@
+{
+    "cSpell.words": [
+      "ahooks",
+      "antd",
+      "Bearer",
+      "browserslist",
+      "commitlint",
+      "craco",
+      "idel",
+      "middlewares",
+      "UnauthenicationApp"
+    ],
+    "files.autoSave": "off",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "eslint.validate": [
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact"
+    ],
+  
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true,
+      "source.fixAll": true
+    },
+    "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "fileheader.customMade": {
+      "autoAdd": false,  //关闭自动生成头部注释
+    },
+    // Set the default
+"editor.formatOnSave": true,
+
+  }
