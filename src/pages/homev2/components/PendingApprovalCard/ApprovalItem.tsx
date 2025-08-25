@@ -27,7 +27,7 @@ export const ApprovalItem = ({ row }: { row: any }) => {
   }
   return (
     <div
-      className={`${styles.approvalItem}  cardBase`}
+      className={`${styles.approvalItem} cardBase`}
       onClick={() => {
         onGoPath();
       }}
@@ -38,7 +38,7 @@ export const ApprovalItem = ({ row }: { row: any }) => {
           <SysTags busCode={row.businessCode} />
         </div>
       </div>
-      <div>
+      <div className={styles.dateTime}>
         {row.createTime ? dayjs(row.createTime).format('YYYY-MM-DD') : ''}
       </div>
     </div>

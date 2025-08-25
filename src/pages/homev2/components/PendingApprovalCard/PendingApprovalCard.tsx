@@ -1,11 +1,10 @@
-import React from 'react';
 import styles from './pendingApprovalCard.module.less';
-import { CommonCardHeader } from '../CommonCardHeader/CommonCardHeader';
-import { Button } from 'antd';
 import { useRequest } from 'ahooks';
-import { Empty, rcRequest } from '@core/rc-components';
+import { rcRequest } from '@core/rc-components';
 import { apiConfig } from 'remote/shared';
+import { GenericCard, IGenericCardItem } from '../GenericCard';
 import { ApprovalItem } from './ApprovalItem';
+
 export const PendingApprovalCard = () => {
   const { data, loading } = useRequest(() =>
     rcRequest(`${apiConfig.activiti}/v1/oa/task/running`, {
@@ -19,27 +18,45 @@ export const PendingApprovalCard = () => {
       },
     }),
   );
-  const isEmpty = data?.rows && Array.isArray(data?.rows) && !data?.rows.length;
+
+  const handleMoreClick = () => {
+    window.open('/uims/backlog');
+  };
+
+  const handleItemClick = (item: IGenericCardItem) => {
+    // 这里可以添加通用的点击处理逻辑
+    console.log('Item clicked:', item);
+  };
+
+  const renderApprovalItem = (item: IGenericCardItem, index: number) => {
+    return <ApprovalItem row={item} key={`${item.id}-${index}`} />;
+  };
+
+  // 转换数据格式
+  const approvalItems: IGenericCardItem[] = (data?.rows || []).map(
+    (row: any) => ({
+      id: row.id,
+      title: row.processName || '',
+      description: row.processName || '',
+      time: row.createTime,
+      businessCode: row.businessCode,
+      processName: row.processName,
+      ...row, // 保留原始数据
+    }),
+  );
+
   return (
-    <div className={styles.pendingApprovalCard}>
-      <CommonCardHeader title="待审批">
-        <Button
-          type="link"
-          onClick={() => {
-            window.open('/uims/backlog');
-          }}
-        >
-          查看全部
-        </Button>
-      </CommonCardHeader>
-      {isEmpty && (
-        <div className={styles.emptyWrap}>
-          <Empty height={'100px'} imgHeight={180} imgWidth={214} />
-        </div>
-      )}
-      {(data?.rows || []).map((row, index) => {
-        return <ApprovalItem row={row} key={row.id + index} />;
-      })}
-    </div>
+    <GenericCard
+      title="审批待办"
+      items={approvalItems}
+      loading={loading}
+      emptyText="暂无审批待办"
+      showMore={true}
+      moreText="查看全部"
+      onMoreClick={handleMoreClick}
+      onItemClick={handleItemClick}
+      renderItem={renderApprovalItem}
+      className={styles.pendingApprovalCard}
+    />
   );
 };

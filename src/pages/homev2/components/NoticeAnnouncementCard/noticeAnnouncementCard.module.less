@@ -1,13 +1,174 @@
-.noticeAnnouncementCard {
-  height: 400px;
-  background-color: #fff;
+.container {
+  background: #fff;
+  border-radius: 8px;
+  padding: 0;
 }
 
-.emptyWrap {
-  height: 250px;
+.calendarContainer {
+  margin-bottom: 16px;
+  padding: 0 16px;
+  :global(.ant-picker-calendar-mini .ant-picker-panel) {
+    background-color: #f9f9f9 !important;
+  }
+  :global(.ant-picker-calendar .ant-picker-panel) {
+    border-top: none;
+  }
+}
+
+.calendar {
+  // padding: 16px;
+}
+
+.calendarHeader {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 24px;
+  justify-content: space-between;
+  padding: 11px 0;
+  background-color: #fff;
+  position: relative;
+}
+
+.calendarNavigation {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.calendarMonth {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+}
+
+.navButton {
+  cursor: pointer;
+  color: #666;
+}
+
+.select {
+  width: 120px;
+  height: 32px;
+  margin-left: auto;
+}
+
+.statusTag {
+  width: 64px;
+  height: 22px;
+  line-height: 19px;
+  margin-left: 8px;
+  border-radius: 2px 2px 2px 2px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.statusTagBlue {
+  background-color: #e6f7ff;
+  color: #68a2e0;
+  border: 1px solid #91d5ff;
+}
+
+.statusTagGreen {
+  background-color: #f6ffed;
+  color: #86d560;
+  border: 1px solid #b7eb8f;
+}
+
+.noticeList {
+  /* 通知列表容器样式 */
+  padding: 0 24px;
+}
+
+.noticeItem {
+  display: flex;
+  align-items: flex-start;
+  padding: 12px 0;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.noticeItem:hover {
+  background-color: #fafafa;
+}
+
+.noticeItem:last-child {
+  // border-bottom: none;
+}
+
+.dateColumn {
+  margin-right: 10px;
+  text-align: center;
+  min-width: 50px;
+}
+
+.dateNumber {
+  font-size: 24px;
+  font-weight: 600;
+  color: #000;
+  line-height: 1;
+}
+
+.dayOfWeek {
+  font-size: 14px;
+  color: #666;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.contentColumn {
+  flex: 1;
+}
+
+.contentHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.blueDot {
+  width: 8px;
+  height: 8px;
+  background-color: #1890ff;
+  border-radius: 50%;
+  margin-right: 7px;
+  flex-shrink: 0;
+}
+
+.itemTitle {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.itemDescription {
+  font-size: 12px;
+  color: #999;
+  margin-left: 14px;
+}
+
+.statusColumn {
+  margin-left: 12px;
+}
+
+.statusTag {
+  font-size: 11px;
+  padding: 2px 6px;
+}
+
+.calendarEventDot {
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background-color: #1890ff;
+  border-radius: 50%;
+}
+
+.calendarCell {
+  position: relative;
 }

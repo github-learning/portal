@@ -62,19 +62,13 @@ export const TaskToDoCard = () => {
     <div className={styles.taskToDoCard}>
       <CommonCardHeader
         title="任务待办"
-        style={{
-          height: '64px',
-        }}
-      >
-        <Button
-          type="link"
-          onClick={() => {
+        actionButton={{
+          text: '任务待办',
+          onClick: () => {
             window.open('/task/');
-          }}
-        >
-          查看全部
-        </Button>
-      </CommonCardHeader>
+          },
+        }}
+      />
       <Spin spinning={todoListLoading || wrappersLoading}>
         <TaskCalendar
           time={time}

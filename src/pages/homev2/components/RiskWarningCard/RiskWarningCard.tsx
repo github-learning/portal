@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import styles from './riskWarningCard.module.less';
 import { CommonCardHeader } from '../CommonCardHeader/CommonCardHeader';
-import { Button } from 'antd';
 import { apiConfig, getApiUrl, useJumpPageRouteGet } from 'remote/shared';
 import { useRequest } from 'ahooks';
 import { Empty, SpinnersDot, rcRequest } from '@core/rc-components';
@@ -38,14 +37,11 @@ export const RiskWarningCard = () => {
     <div className={styles.riskWarningCard}>
       <CommonCardHeader
         title="风控预警"
-        style={{
-          height: '64px',
+        actionButton={{
+          text: '查看全部',
+          onClick: handleAll,
         }}
-      >
-        <Button type="link" onClick={handleAll}>
-          查看全部
-        </Button>
-      </CommonCardHeader>
+      />
       {loading && (
         <div className={styles.emptyWrap}>
           <SpinnersDot />

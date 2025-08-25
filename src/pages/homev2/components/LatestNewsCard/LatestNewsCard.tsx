@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { CommonCardHeader } from '../CommonCardHeader/CommonCardHeader';
+<<<<<<< HEAD
 import { Button, Spin } from 'antd';
+=======
+import { Spin } from 'antd';
+>>>>>>> d1f1d1861b73d4cff7c592fa46ceae5e0f13e81e
 import styles from './latestNewsCard.module.less';
 import { useRequest } from 'ahooks';
 import { Empty, rcRequest } from '@core/rc-components';
@@ -37,19 +41,13 @@ export const LatestNewsCard = () => {
     <div className={styles.latestNewsCard}>
       <CommonCardHeader
         title="最新消息"
-        style={{
-          height: '64px',
-        }}
-      >
-        <Button
-          type="link"
-          onClick={() => {
+        actionButton={{
+          text: '查看全部',
+          onClick: () => {
             window.open(`/message/messageList`);
-          }}
-        >
-          查看全部
-        </Button>
-      </CommonCardHeader>
+          },
+        }}
+      />
       <Spin spinning={loading}>
         {isEmpty && (
           <div className={styles.emptyWrap}>
